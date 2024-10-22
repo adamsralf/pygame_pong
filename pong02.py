@@ -75,7 +75,7 @@ class Game:
         self._paddle["right"] = Paddle("right", self._all_sprites)
         self._running = True
 
-    def run(self):
+    def run(self) -> None:
         time_previous = time()
         while self._running:
             self.watch_for_events()
@@ -86,7 +86,7 @@ class Game:
             time_previous = time_current
         pygame.quit()
 
-    def watch_for_events(self):
+    def watch_for_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._running = False
@@ -107,10 +107,10 @@ class Game:
                 elif event.key in (pygame.K_w, pygame.K_s):
                     self._paddle["left"].update(action="halt")
 
-    def update(self):
+    def update(self) -> None:
         self._all_sprites.update(action="move")
 
-    def draw(self):
+    def draw(self) -> None:
         self._background.draw(self._display)
         self._all_sprites.draw(self._display)
         pygame.display.flip()

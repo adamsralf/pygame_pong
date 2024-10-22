@@ -25,7 +25,7 @@ class Background(pygame.sprite.Sprite):
         self.image.fill("darkred")
         self._paint_net()
 
-    def _paint_net(self):
+    def _paint_net(self) -> None:
         rect = pygame.rect.Rect(0, 0, 3, 30)
         rect.centerx = Settings.WINDOW.centerx
         rect.top = 50
@@ -121,7 +121,7 @@ class Score(pygame.sprite.Sprite):
         self.rect = None
         self._render()
 
-    def update(self, *args, **kwargs):
+    def update(self, *args, **kwargs) -> None:
         if "player" in kwargs.keys():
             self._score[kwargs["player"]] += 1
             self._render()
@@ -148,7 +148,7 @@ class Game:
         self._score = Score(self._all_sprites)
         self._running = True
 
-    def run(self):
+    def run(self) -> None:
         time_previous = time()
         while self._running:
             self.watch_for_events()
@@ -159,7 +159,7 @@ class Game:
             time_previous = time_current
         pygame.quit()
 
-    def watch_for_events(self):
+    def watch_for_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._running = False
@@ -182,11 +182,11 @@ class Game:
             elif event.type == MyEvents.POINT_FOR:
                 self._score.update(player=event.player)
 
-    def update(self):
+    def update(self) -> None:
         self._all_sprites.update(action="move")
         self._check_collision()
 
-    def draw(self):
+    def draw(self) -> None:
         self._background.draw(self._display)
         self._all_sprites.draw(self._display)
         pygame.display.flip()

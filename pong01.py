@@ -17,7 +17,7 @@ class Background(pygame.sprite.Sprite):
         self.image.fill("darkred")
         self._paint_net()
 
-    def _paint_net(self):
+    def _paint_net(self) -> None:
         rect = pygame.rect.Rect(0, 0, 3, 30)
         rect.centerx = Settings.WINDOW.centerx
         rect.top = 50
@@ -27,7 +27,7 @@ class Background(pygame.sprite.Sprite):
 
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         pygame.init()
         self._display = pygame.display.set_mode(Settings.WINDOW.size)
         pygame.display.set_caption("My Kind of Pong")
@@ -35,7 +35,7 @@ class Game:
         self._background = pygame.sprite.GroupSingle(Background())
         self._running = True
 
-    def run(self):
+    def run(self) -> None:
         time_previous = time()
         while self._running:
             self.watch_for_events()
@@ -46,15 +46,15 @@ class Game:
             time_previous = time_current
         pygame.quit()
 
-    def watch_for_events(self):
+    def watch_for_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self._running = False
 
-    def update(self):
+    def update(self) -> None:
         pass
 
-    def draw(self):
+    def draw(self) -> None:
         self._background.draw(self._display)
         pygame.display.flip()
 
